@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/buttonUse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="金庫使用" />
+
+    <Button
+        android:id="@+id/buttonAlarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="非常ベル"/>
+
+    <Button
+        android:id="@+id/buttonPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="通常通話"/>
+
+    <Button
+        android:id="@+id/buttonExit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="終了ボタン"/>
+
+</LinearLayout>

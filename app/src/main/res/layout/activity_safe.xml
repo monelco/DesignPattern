@@ -2,30 +2,58 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/buttonUse"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="金庫使用" />
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/buttonAlarm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="非常ベル"/>
+        <Button
+            android:id="@+id/buttonUse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="金庫使用" />
 
-    <Button
-        android:id="@+id/buttonPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="通常通話"/>
+        <Button
+            android:id="@+id/buttonAlarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="非常ベル"/>
 
-    <Button
-        android:id="@+id/buttonExit"
+        <Button
+            android:id="@+id/buttonPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="通常通話"/>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="終了ボタン"/>
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/state"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="60px"
+            android:layout_margin="20dp"/>
+
+        <TextView
+            android:layout_gravity="center"
+            android:id="@+id/hour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="60px"
+            android:text="0時"/>
+
+    </LinearLayout>
+
+
 
 </LinearLayout>

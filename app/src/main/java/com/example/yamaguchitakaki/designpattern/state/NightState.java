@@ -19,25 +19,25 @@ public class NightState implements State {
     }
 
     @Override
-    public void doClock(StateContext stateStateContext, int hour) {
+    public void doClock(StateContext stateContext, int hour) {
         if (9 <= hour && hour < 17) {
-            stateStateContext.changeState(DayState.getInstance());
+            stateContext.changeState(DayState.getInstance());
         }
     }
 
     @Override
-    public void doUse(StateContext stateStateContext) {
-        stateStateContext.callSecurityCenter("非常：夜間の金庫使用");
+    public void doUse(StateContext stateContext) {
+        stateContext.callSecurityCenter("非常：夜間の金庫使用!");
     }
 
     @Override
-    public void doAlaram(StateContext stateStateContext) {
-        stateStateContext.callSecurityCenter("非常ベル(夜間)");
+    public void doAlaram(StateContext stateContext) {
+        stateContext.callSecurityCenter("非常ベル(夜間)");
     }
 
     @Override
-    public void doPhone(StateContext stateStateContext) {
-        stateStateContext.recordLog("夜間の通話録音");
+    public void doPhone(StateContext stateContext) {
+        stateContext.recordLog("夜間の通話録音");
     }
 
     @Override

@@ -2,20 +2,14 @@ package com.example.yamaguchitakaki.designpattern.state;
 
 import android.util.Log;
 
-public class TestSafe {
+public class ClockMock {
 
-    private static final String TAG = "TestSafe";
-
-    private static TestSafe testSafe = new TestSafe();
+    private static final String TAG = "ClockMock";
 
     private boolean mIsActive = true;
 
-    private TestSafe() {
+    public ClockMock() {
         Log.d(TAG, "DEBUG--:インスタンスを生成しました");
-    }
-
-    public static TestSafe getInstance() {
-        return testSafe;
     }
 
     public void start(final StateContext stateContext) {

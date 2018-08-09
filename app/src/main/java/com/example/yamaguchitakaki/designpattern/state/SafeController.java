@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.yamaguchitakaki.designpattern.R;
 
@@ -15,21 +16,31 @@ public class SafeController implements StateContext, View.OnClickListener {
 
     private State mState = DayState.getInstance();
 
-    private TestSafe mTestSafe = TestSafe.getInstance();
+    private ClockMock mClockMock = new ClockMock();
+
+    private TextView mTextState;
+
+    private TextView mTextHour;
+
+    private String mHourStr;
 
     SafeController(Activity context) {
         mActivity = context;
-        mTestSafe.start(this);
     }
 
     public void onResume() {
         bindView();
+        mClockMock.start(this);
     }
 
     private void bindView() {
         Button buttonUse = mActivity.findViewById(R.id.buttonUse);
         Button buttonAlarm = mActivity.findViewById(R.id.buttonAlarm);
         Button buttonPhone = mActivity.findViewById(R.id.buttonPhone);
+
+        mTextHour = mActivity.findViewById(R.id.hour);
+        mTextState = mActivity.findViewById(R.id.state);
+        mTextState.setText(mState.toString());
 
         buttonUse.setOnClickListener(this);
         buttonAlarm.setOnClickListener(this);
@@ -55,13 +66,19 @@ public class SafeController implements StateContext, View.OnClickListener {
     // 時刻の設定
     @Override
     public void setClock(int hour) {
-        String clockString = "現在時刻は";
         if (hour < 10) {
-            clockString += "0" + hour + ":00";
+            mHourStr = "0" + hour + ":00";
         } else {
-            clockString += hour + ":00";
+            mHourStr = hour + ":00";
         }
-        Log.d(TAG, "DEBUG--:clockString->" + clockString);
+
+        // UI更新
+        mActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mTextHour.setText(mHourStr);
+            }
+        });
         mState.doClock(this, hour);
     }
 
@@ -70,6 +87,14 @@ public class SafeController implements StateContext, View.OnClickListener {
     public void changeState(State state) {
         Log.d(TAG, "DEBUG--:" + this.mState + "から" + state + "へ状態が変化しました");
         this.mState = state;
+
+        // UI更新
+        mActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mTextState.setText(mState.toString());
+            }
+        });
     }
 
     // 警備センターの呼び出し
@@ -85,6 +110,6 @@ public class SafeController implements StateContext, View.OnClickListener {
     }
 
     public void onDestroy() {
-        mTestSafe.stopClock();
+        mClockMock.stopClock();
     }
 }
